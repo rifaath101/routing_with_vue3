@@ -31,7 +31,6 @@ export default {
     /* teamId is the name provided in the path after : in main.js*/
     const selectedTeam = this.teams.find((team) => team.id == teamId);
     const members = selectedTeam.members;
-    console.log(members);
     const selectedMembers = [];
     for (const member of members) {
       const selectedUser = this.users.find((user) => user.id === member);
