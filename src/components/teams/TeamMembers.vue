@@ -26,18 +26,29 @@ export default {
       members: [],
     };
   },
+  methods: {
+    loadTeamMembers(route) {
+      const teamId = route.params.teamId;
+      /* teamId is the name provided in the path after : in main.js*/
+      const selectedTeam = this.teams.find((team) => team.id == teamId);
+      const members = selectedTeam.members;
+      const selectedMembers = [];
+      for (const member of members) {
+        const selectedUser = this.users.find((user) => user.id === member);
+        selectedMembers.push(selectedUser);
+      }
+      this.members = selectedMembers;
+      this.teamName = selectedTeam.name;
+    },
+  },
   created() {
-    const teamId = this.$route.params.teamId;
-    /* teamId is the name provided in the path after : in main.js*/
-    const selectedTeam = this.teams.find((team) => team.id == teamId);
-    const members = selectedTeam.members;
-    const selectedMembers = [];
-    for (const member of members) {
-      const selectedUser = this.users.find((user) => user.id === member);
-      selectedMembers.push(selectedUser);
-    }
-    this.members = selectedMembers;
-    this.teamName = selectedTeam.name;
+    this.loadTeamMembers(this.$route);
+  },
+  watch: {
+    /* If the url changes, vue won't reload the app. So to make sure it does change let's add a watcher to make sure the component is reloaded if the route is changed as well*/
+    $route(newRoute) {
+      this.loadTeamMembers(newRoute);
+    },
   },
 };
 </script>
