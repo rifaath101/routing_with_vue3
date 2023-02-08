@@ -23,6 +23,8 @@ const router = createRouter({
       /* Adding this - ':' before a word means that anything you type will direct you to the following component. Eg - path: '/teams/:lolo' if you now type in the url the following - teams/:lasdfasd you will get the component specified */
 
       component: TeamMembers,
+      props: true,
+      // This tells the vue router that the dynamic parameters (:teamId) should be passed into this component as props
     },
   ],
   /* You can add a config called linkActiveClass to change the given class - router-link-active to a name of your choosing. Eg - linkActiveClass: 'active' */
