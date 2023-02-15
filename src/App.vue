@@ -3,6 +3,10 @@
   <main>
     <router-view></router-view>
   </main>
+  <footer>
+    <router-view name="footer"></router-view>
+    <!-- You can have multiple router-view tags in order to display more components, however provide a name when adding more router-view components. The one without the name will be the default component-->
+  </footer>
 </template>
 
 <script>

@@ -4,6 +4,8 @@ import App from './App.vue';
 import TeamsList from './components/teams/TeamsList.vue';
 import UsersList from './components/users/UsersList.vue';
 import TeamMembers from './components/teams/TeamMembers.vue';
+import TeamsFooter from './components/teams/TeamsFooter.vue';
+import UsersFooter from './components/users/UsersFooter.vue';
 
 const router = createRouter({
   history:
@@ -16,7 +18,10 @@ const router = createRouter({
     {
       name: 'teams',
       path: '/teams',
-      component: TeamsList,
+      components: {
+        default: TeamsList,
+        footer: TeamsFooter,
+      } /* You can use components instead of component in order to display more components*/,
       children: [
         /* You can use the children config to include nested routes. The children routes won't work unless a router-view component is registered in the parent component. TeamsList would be the component to register the router-view component for this child*/
         {
@@ -31,7 +36,7 @@ const router = createRouter({
     },
     {
       path: '/users',
-      component: UsersList,
+      components: { default: UsersList, footer: UsersFooter },
     },
 
     {
