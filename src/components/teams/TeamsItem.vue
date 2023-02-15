@@ -11,10 +11,12 @@ export default {
   props: ['id', 'name', 'memberCount'],
   computed: {
     teamMembersLink() {
+      /* The string way of doing this - return '/teams/'  + this.id */
       return {
         name: 'team-members',
         params: { teamId: this.id },
-      }; /* team-members is the name of a route , teamId is the name given to the path*/
+        query: { sort: 'asc' },
+      }; /* team-members is the name of a route , teamId is the name given to the path. Having the link as an object is better as its easier to add configs. You can view this query with this.$route.query*/
     },
   },
 };
