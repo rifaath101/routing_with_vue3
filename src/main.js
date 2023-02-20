@@ -45,6 +45,14 @@ const router = createRouter({
     },
   ],
   /* You can add a config called linkActiveClass to change the given class - router-link-active to a name of your choosing. Eg - linkActiveClass: 'active' */
+  scrollBehavior(to, from, savedPosition) {
+    /* to is an object providing details on the page you're at, from is an object providing details about the page you were previously on*/
+    console.log(to, from, savedPosition);
+    if (savedPosition) {
+      return savedPosition; /* If a saved position exists lets let users be automatically scrolled there otherwise let them be scrolled to the top */
+    }
+    return { left: 0, top: 0 };
+  },
 });
 
 const app = createApp(App);
