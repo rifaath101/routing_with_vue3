@@ -55,6 +55,17 @@ const router = createRouter({
   },
 });
 
+/* The beforeEach function will run before each navigation so before you navigate to a different page */
+router.beforeEach(function (to, from, next) {
+  console.log(to, from);
+  // if (to.name === 'team-members') {
+  //   next();
+  // } else {
+  //   next({ name: 'team-members', params: { teamId: 't2' } });
+  // }
+  next();
+});
+
 const app = createApp(App);
 
 app.use(router); /* Activates the router*/
