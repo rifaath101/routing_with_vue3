@@ -71,6 +71,11 @@ const router = createRouter({
 //   next();
 // });
 
+router.afterEach(function (to, from) {
+  console.log('Global afterEach');
+  console.log(to, from);
+}); // The afterEach() function will run after a navigation is confirmed. You can't modify the navigation but you can send data or perform some console logging
+
 const app = createApp(App);
 
 app.use(router); /* Activates the router*/
