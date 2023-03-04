@@ -1,4 +1,5 @@
 <template>
+  <button @click="saveChanges">Save changes</button>
   <ul>
     <user-item
       v-for="user in users"
@@ -16,11 +17,26 @@ export default {
   components: {
     UserItem,
   },
+  data() {
+    return { changesSaved: false };
+  },
   inject: ['users'],
   beforeRouteEnter(to, from, next) {
     console.log('text before entering users page');
-    console.log(to, from);
     next();
+  },
+  beforeRouteLeave(to, from, next) {
+    if (this.changesSaved) {
+      next();
+    } else {
+      const userWantsToLeave = confirm('Are you sure you want to leave?');
+      next(userWantsToLeave);
+    }
+  }, // The beforeRouteLeave is a function that can be called before a user leaves a page.
+  methods: {
+    saveChanges() {
+      this.changesSaved = true;
+    },
   },
 };
 </script>
