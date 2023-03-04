@@ -18,6 +18,7 @@ const router = createRouter({
     {
       name: 'teams',
       path: '/teams',
+      meta: { needsAuth: true }, // A config in which you can add new data
       components: {
         default: TeamsList,
         footer: TeamsFooter,
@@ -70,6 +71,15 @@ const router = createRouter({
 //   // }
 //   next();
 // });
+
+router.beforeEach(function (to, from, next) {
+  if (to.meta.needsAuth) {
+    /* An example of using meta*/
+    console.log('Needs auth');
+    next();
+  }
+  next();
+});
 
 // router.afterEach(function (to, from) {
 //   console.log('Global afterEach');
