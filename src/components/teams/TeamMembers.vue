@@ -45,6 +45,12 @@ export default {
     console.log(this.$route.query);
     this.loadTeamMembers(this.teamId);
   },
+  beforeRouteUpdate(to, from, next) {
+    /* This hook is a function that will execute if the page is updated with new data*/
+    console.log('text before updating team-members page with new data');
+    console.log(to, from);
+    next();
+  },
   watch: {
     /* If the url changes, vue won't reload the app. So to make sure it does change let's add a watcher to make sure the component is reloaded if the route is changed as well*/
     teamId(newId) {

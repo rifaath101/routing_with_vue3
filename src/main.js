@@ -37,6 +37,11 @@ const router = createRouter({
     {
       path: '/users',
       components: { default: UsersList, footer: UsersFooter },
+      // beforeEnter(to, from, next) {
+      //   console.log('text before entering users page');
+      //   console.log(to, from);
+      //   next();
+      // }, /* You can define this hook in this config object or in the component itself as shown in UsersList.vue*/
     },
 
     {
@@ -56,15 +61,15 @@ const router = createRouter({
 });
 
 /* The beforeEach function will run before each navigation so before you navigate to a different page */
-router.beforeEach(function (to, from, next) {
-  console.log(to, from);
-  // if (to.name === 'team-members') {
-  //   next();
-  // } else {
-  //   next({ name: 'team-members', params: { teamId: 't2' } });
-  // }
-  next();
-});
+// router.beforeEach(function (to, from, next) {
+//   console.log(to, from);
+//   // if (to.name === 'team-members') {
+//   //   next();
+//   // } else {
+//   //   next({ name: 'team-members', params: { teamId: 't2' } });
+//   // }
+//   next();
+// });
 
 const app = createApp(App);
 
